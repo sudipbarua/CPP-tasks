@@ -11,13 +11,13 @@ using namespace std;
 
 void display ();
 void print_list (vector <int> v, size_t);
-vector <int> add_val(vector <int> v, size_t);
+vector <int> add_val(vector <int> &v);
 void mean_val (vector <int> v, size_t);
-void min_val (vector <int> v, size_t);
-void max_val (vector <int> v, size_t);
+void min_val (vector <int> v);
+void max_val (vector <int> v);
 
 int main(){
-	vector <int> mylist {10,30,40,67,23,45,81,12}; 	//List that is being processed 
+	vector <int> mylist {}; 	//List that is being processed 
 	char choice{};
 	do {
 		display ();
@@ -29,16 +29,16 @@ int main(){
 			print_list (mylist, size);	//prints the list/vector
 				
 		else if (choice == 'A')
-			add_val (mylist, size);		//promts the user to add a new value to the list
+			add_val (mylist);		//promts the user to add a new value to the list
 		
 		else if (choice == 'M')
 			mean_val (mylist, size);	//calculates the mean value of the items in the list
 			
 		else if (choice == 'S') 
-			min_val (mylist, size);		//determines the minimum value
+			min_val (mylist);		//determines the minimum value
 		
 		else if (choice == 'L') 
-			max_val (mylist, size);		//determines the maximum value
+			max_val (mylist);		//determines the maximum value
 		
 		else 
 			cout << "Wrong input!!! Please try again" << endl << endl; //notifies the user in case of invalid input
@@ -75,12 +75,12 @@ void print_list (vector <int> v, size_t s){
 
 
 /*definition of add value function*/
-vector <int> add_val(vector <int> v, size_t s){
+vector <int> add_val(vector <int> &v){
 	int val {};
 	cout << "Please enter new value: ";
 	cin >> val;
 	v.push_back (val);
-	cout << v.at(s) << " is added" << endl << endl;
+	cout << val << " is added" << endl << endl;
 	return v;
 }
 
@@ -96,7 +96,7 @@ void mean_val (vector <int> v, size_t s){
 
 
 /*Definition of minimum value determining function*/
-void min_val (vector <int> v, size_t s){
+void min_val (vector <int> v){
 	int min = v.at(0);
 	for (auto i : v){
 		if (i <= min)
@@ -107,7 +107,7 @@ void min_val (vector <int> v, size_t s){
 
 
 /*Definition of maximum value determining function*/
-void max_val (vector <int> v, size_t s){
+void max_val (vector <int> v){
 	int max = v.at(0);
 	for (auto i : v){
 		if (i >= max)
